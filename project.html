@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ project.title }} - {{ profile.name }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>{{ project.title }}</h1>
+      <p class="subtitle">{{ profile.name }} — {{ profile.role }}</p>
+    </header>
+
+    <section>
+      <h2>Deskripsi</h2>
+      <p>{{ project.details }}</p>
+    </section>
+
+    <a href="{{ url_for('home') }}" class="btn">← Kembali</a>
+
+    <footer>
+      <p>© {{ profile.name }} 2025</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <p class="subtitle">Berikan Saran Bro!!!</p>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <section>
+      <form method="POST" class="contact-form">
+        <label>Nama</label>
+        <input type="text" name="name" required />
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <label>Pesan</label>
+        <textarea name="message" rows="5" required></textarea>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </section>
+
+    {% if admin %}
+    <section>
+      <h2>Pesan Masuk (Admin)</h2>
+      {% if messages %} {% for msg in messages %}
+      <div class="card">
+        <p><strong>{{ msg[0] }}</strong> ({{ msg[1] }})</p>
+        <p>{{ msg[2] }}</p>
+        <small>{{ msg[3] }}</small>
+      </div>
+      {% endfor %} {% else %}
+      <p>Belum ada pesan.</p>
+      {% endif %}
+      <a href="{{ url_for('logout') }}" class="btn" style="background: red"
+        >Logout</a
+      >
+    </section>
+    {% else %}
+    <section style="text-align: center">
+      <a href="{{ url_for('login') }}" class="btn">Login Admin</a>
+    </section>
+    {% endif %}
+
+    <footer>
+      <a href="{{ url_for('home') }}" class="btn">← Kembali</a>
+    </footer>
+  </body>
+</html>
